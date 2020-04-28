@@ -25,13 +25,37 @@ namespace Checkpoint_WCircus
         public MainWindow()
         {
             InitializeComponent();
-            var host = new NancyHost(new Uri("http://localhost:1234"));
-            host.Start();
+            //var host = new NancyHost(new Uri("http://localhost:1234"));
+            //host.Start();
+            string imageLink = "https://pmcvariety.files.wordpress.com/2015/05/kung-fury-cannes.jpg";
+            var imageSource = new Uri(imageLink, UriKind.Absolute);
+            titleImage.Source = new BitmapImage(imageSource);
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void contactButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void animalsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void tamersButton_Click(object sender, RoutedEventArgs e)
+        {
+            var tamersControl = new TamersControl();
+            coreGrid.Children.Clear();
+            coreGrid.Children.Add(tamersControl);
+        }
+
+        private void homeButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application curApp = Application.Current;
+            Window mainWindow = curApp.MainWindow;
+            Image homeScreen = (Image)mainWindow.FindName("titleImage");
+            coreGrid.Children.Clear();
+            coreGrid.Children.Add(homeScreen);
         }
     }
 }

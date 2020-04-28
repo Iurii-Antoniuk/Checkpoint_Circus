@@ -10,11 +10,8 @@ namespace Database_Api
 {
     public class RestModule : NancyModule
     {
-        private static CircusContext context = new CircusContext();
-        private List<Tamer> tamers = context.Tamers.AsEnumerable().ToList();
-        private List<SpiritAnimal> spiritAnimals = context.SpiritAnimals.AsEnumerable().ToList();
-        private List<KungfuMastery> kungfuMasteries = context.KungfuMasteries.AsEnumerable().ToList();
-
+        private static readonly DbPopulator db = new DbPopulator();
+        
         public RestModule()
         {
             Get("/", pars =>
@@ -24,12 +21,14 @@ namespace Database_Api
 
             Get("/tamers", pars =>
             {
+                IEnumerable<Tamer> tamers = db.GetAllTamers();
                 string output = JsonConvert.SerializeObject(tamers);
                 return output;
             });
 
             Get("/tamers/{id}", pars =>
             {
+                IEnumerable<Tamer> tamers = db.GetAllTamers();
                 bool exists = tamers.Any(t => t.TamerId == pars.id);
                 if (exists)
                 {
@@ -43,18 +42,52 @@ namespace Database_Api
                 }
             });
 
+            Get("/tamers/{id}/spirit-animal", pars =>
+            {
+                IEnumerable<Tamer> tamers = db.GetAllTamers();
+                bool exists = tamers.Any(t => t.TamerId == pars.id);
+                if (exists)
+                {
+                    SpiritAnimal animal = tamers.First(t => t.TamerId == pars.id).SpiritAnimal;
+                    string export = JsonConvert.SerializeObject(animal);
+                    return export;
+                }
+                else
+                {
+                    return "Ooups, the requested Id does not exist. Try entering 1 to 4 id values instead";
+                }
+            });
+
+            Get("/tamers/{id}/skills", pars =>
+            {
+                IEnumerable<Tamer> tamers = db.GetAllTamers();
+                bool exists = tamers.Any(t => t.TamerId == pars.id);
+                if (exists)
+                {
+                    KungfuMastery skills = tamers.First(t => t.TamerId == pars.id).KungfuMastery;
+                    string export = JsonConvert.SerializeObject(skills);
+                    return export;
+                }
+                else
+                {
+                    return "Ooups, the requested tamer Id does not exist. Try entering 1 to 4 id values instead";
+                }
+            });
+
             Get("/animals", pars =>
             {
-                string output = JsonConvert.SerializeObject(spiritAnimals);
+                IEnumerable<SpiritAnimal> animals = db.GetAllAnimals();
+                string output = JsonConvert.SerializeObject(animals);
                 return output;
             });
 
             Get("/animals/{id}", pars =>
             {
-                bool exists = spiritAnimals.Any(a => a.SpiritAnimalId == pars.id);
+                IEnumerable<SpiritAnimal> animals = db.GetAllAnimals();
+                bool exists = animals.Any(a => a.SpiritAnimalId == pars.id);
                 if (exists)
                 {
-                    SpiritAnimal animal = spiritAnimals.First(a => a.SpiritAnimalId == pars.id);
+                    SpiritAnimal animal = animals.First(a => a.SpiritAnimalId == pars.id);
                     string export = JsonConvert.SerializeObject(animal);
                     return export;
                 }

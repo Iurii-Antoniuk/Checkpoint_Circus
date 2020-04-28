@@ -6,7 +6,8 @@ namespace Database_Api
     {
         static void Main(string[] args)
         {
-            DbPopulator.Populate();
+            DbPopulator dbPopulator = new DbPopulator();
+            dbPopulator.Populate();
         }
     }
 }
