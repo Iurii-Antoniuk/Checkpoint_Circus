@@ -10,10 +10,10 @@
     <Grid Height="380" Width="800">
         <Grid>
             <Grid.Resources>
-                <Style TargetType="TextBlock">
+                <Style TargetType="TextBox">
                     <Setter Property="Foreground" Value="Black" />
                     <Setter Property="FontFamily" Value="Algerian" />
-                    <Setter Property="FontSize" Value="22" />
+                    <Setter Property="FontSize" Value="18" />
                     <Setter Property="VerticalAlignment"  Value="Center" />
                     <Setter Property="Margin"  Value="0, 6, 0, 0" />
                 </Style>
@@ -36,8 +36,47 @@
                     <ColumnDefinition Width="8*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                    <Label Margin="10, 0, 10, 0" Width="65" Content="Name:" />
+                    <TextBox x:Name="txtName"  Height="auto" Width="260" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                    <Label Margin="10, 0, 10, 0" Width="65" Content="Phone:" />
+                    <TextBox x:Name="txtPhone" Height="auto" Width="260" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+                    <Label Margin="10, 0, 10, 0" Width="65" Content="Email:" />
+                    <TextBox x:Name="txtEmail" Height="auto" Width="260" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
+                    <Label Margin="10, 0, 10, 10" Content="Comment:" />
+                    <TextBox x:Name="txtComment"
+                       Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                       Margin="40,0,10,0"
+                       VerticalAlignment="Top"
+                       Height="90"
+                        Width="300"
+                       AcceptsReturn="True"
+                       TextWrapping="Wrap"
+                       VerticalScrollBarVisibility="Auto"
+                       materialDesign:HintAssist.Hint="Your comment goes here"
+                       IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox}" />
+                </StackPanel>
                 
+                <Button Grid.Column="1" Grid.Row="4" FontSize="18" VerticalContentAlignment="Center"
+                Height="35" x:Name="sendButton" Click="sendButton_Click"
+                Width="100" materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                ToolTip="Check out the next Sprit Animal">
+                    Send
+                </Button>
+
             </Grid>
             
 
@@ -49,28 +88,7 @@
                     <RowDefinition Height="1*" />
                     <RowDefinition Height="1*" />
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" Content="Id:"/>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SpiritAnimalId}" />
-
-                <Label Grid.Row="1" Grid.Column="0" Content="Name:"/>
-                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Name}" />
-
-                <Label Grid.Row="2" Grid.Column="0" Content="Claws:"/>
-                <ToggleButton HorizontalAlignment="Left" Margin="30, 0, 0, 0" Grid.Row="2" Grid.Column="1"
-                      Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
-                      ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsEnabled="{Binding Claws}" IsChecked="{Binding Claws}" />
-
-                <Label Grid.Row="3" Grid.Column="0" Content="Teeth:"/>
-                <ToggleButton HorizontalAlignment="Left" Margin="30, 0, 0, 0" Grid.Row="3" Grid.Column="1"
-                      Style="{StaticResource MaterialDesignSwitchDarkToggleButton}"
-                      ToolTip="MaterialDesignSwitchDarkToggleButton"
-                      IsEnabled="{Binding Teeth}" IsChecked="{Binding Teeth}" />
             </Grid>
         </Grid>
     </Grid>

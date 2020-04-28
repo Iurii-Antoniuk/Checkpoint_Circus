@@ -22,5 +22,10 @@ namespace Checkpoint_WCircus
         {
             InitializeComponent();
         }
+
+        private void sendButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
