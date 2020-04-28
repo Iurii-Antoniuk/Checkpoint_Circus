@@ -3,26 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:Checkpoint_WCircus"
              mc:Ignorable="d"
-             d:DesignHeight="400" d:DesignWidth="800">
-    <Grid Height="400" Width="800">
+             d:DesignHeight="380" d:DesignWidth="800">
+    <Grid Height="380" Width="800">
         <Grid>
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="Black" />
+                    <Setter Property="FontFamily" Value="Algerian" />
+                    <Setter Property="FontSize" Value="17" />
+                    <Setter Property="VerticalAlignment"  Value="Top" />
+                    <Setter Property="Margin"  Value="0, 6, 0, 0" />
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="Foreground" Value="IndianRed" />
+                    <Setter Property="FontSize" Value="16" />
+                    <Setter Property="FontFamily" Value="Algerian" />
+                    <Setter Property="VerticalAlignment"  Value="Top" />
+                </Style>
+            </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
-                <RowDefinition Height="4*" />
+                <RowDefinition Height="7*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="6*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
 
-            <!--<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="previousImageButton" Padding="15" Margin="15">Previous</Button>
-                <Button x:Name="nextImageButton" Click="nextImageButton_Click" Padding="15" Margin="15">Next</Button>
-            </StackPanel>-->
+            <Button Grid.Column="1" Grid.Row="0" FontSize="20" VerticalContentAlignment="Center"
+                Height="40" x:Name="previousImageButton" Click="previousImageButton_Click"
+                Width="150" materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                ToolTip="Check out the previous tamer">
+                Previous
+            </Button>
+            <Button Grid.Column="2" Grid.Row="0" FontSize="20" VerticalContentAlignment="Center"
+                Height="40" x:Name="nextImageButton" Click="nextImageButton_Click"
+                Width="150" materialDesign:ShadowAssist.ShadowDepth="Depth5"
+                ToolTip="Check out the next tamer">
+                Next
+            </Button>
+
+            <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" 
+                   HorizontalAlignment="Stretch"  x:Name="comicImage" 
+                   Source="{Binding Image}"/>
+
+            <Grid Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Margin="5, 25, 0, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Content="Name:"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Name}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Quote:"/>
+                <TextBlock TextWrapping="WrapWithOverflow" Grid.Row="1" Grid.Column="1" Text="{Binding Quote}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Spirit Animal:"/>
+                <materialDesign:Chip Grid.Row="2" Grid.Column="1"
+                    Height="40" x:Name="spiritAnimal" Click="spiritAnimal_Click"
+                    Content="{Binding SpiritAnimal.Name}" FontSize="18">
+                    <materialDesign:Chip.Icon>
+                        <Image VerticalAlignment="Stretch" Height="40"
+                            Source="{Binding SpiritAnimal.Image}" />
+                    </materialDesign:Chip.Icon>
+                </materialDesign:Chip>
+
+                <Label Grid.Row="3" Grid.Column="0" Content="Agility:" Margin="0,0,0,5"/>
+                <ProgressBar Grid.Row="3" Grid.Column="1" Value="{Binding KungfuMastery.Agility}" Height="8" Minimum="0" Maximum="10"></ProgressBar>
+
+                <Label Grid.Row="4" Grid.Column="0" Content="KillerInstinct:" Margin="0,0,0,5"/>
+                <ProgressBar Grid.Row="4" Grid.Column="1" Value="{Binding KungfuMastery.KillerInstinct}" Height="8" Minimum="0" Maximum="10"></ProgressBar>
+
+                <Label Grid.Row="5" Grid.Column="0" Content="Chosenness:" Margin="0,0,0,5"/>
+                <ProgressBar Grid.Row="5" Grid.Column="1" Value="{Binding KungfuMastery.Chosenness}" Height="8" Minimum="0" Maximum="10"></ProgressBar>
+
+                <Label Grid.Row="6" Grid.Column="0" Content="Hacking:" Margin="0,0,0,5"/>
+                <ProgressBar Grid.Row="6" Grid.Column="1" Value="{Binding KungfuMastery.Hacking}" Height="8" Minimum="0" Maximum="10"></ProgressBar>
+
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

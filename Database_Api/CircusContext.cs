@@ -11,6 +11,7 @@ namespace Database_Api
         public DbSet<KungfuMastery> KungfuMasteries { get; set; }
         public DbSet<SpiritAnimal> SpiritAnimals { get; set; }
         public DbSet<Tamer> Tamers { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {

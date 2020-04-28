@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
+using Database_Api;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Nancy;
 using Nancy.Hosting.Self;
 
@@ -34,12 +31,16 @@ namespace Checkpoint_WCircus
 
         private void contactButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var feedbackControl = new UserControlFeedback();
+            coreGrid.Children.Clear();
+            coreGrid.Children.Add(feedbackControl);
         }
 
         private void animalsButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var animalsControl = new AnimalsUserControl();
+            coreGrid.Children.Clear();
+            coreGrid.Children.Add(animalsControl);
         }
 
         private void tamersButton_Click(object sender, RoutedEventArgs e)

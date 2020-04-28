@@ -6,7 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Checkpoint_WCircus"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="600" Width="800" ResizeMode="CanResize">
+        Title="MainWindow" Height="640" Width="800" ResizeMode="CanResize">
     <Window.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="IndianRed" />
@@ -25,27 +25,27 @@
         </Grid>
         <Grid  Grid.Row="1">
             <StackPanel Orientation="Horizontal" Margin="60, 0, 0, 0">
-                <RadioButton FontSize="20"
+                <RadioButton FontSize="25" Height="40"
                     x:Name="homeButton"  Style="{StaticResource MaterialDesignTabRadioButton}"
                     Margin="4"
                     IsChecked="True"
                     Content="HOME" Click="homeButton_Click"
                     />
-                <RadioButton FontSize="20"
+                <RadioButton FontSize="25" Height="40"
                     x:Name="tamersButton" Style="{StaticResource MaterialDesignTabRadioButton}"
                     Margin="4"
                     IsChecked="False"
                     Content="TAMERS" Click="tamersButton_Click" />
-                <RadioButton FontSize="20"
+                <RadioButton FontSize="25" Height="40"
                     x:Name="animalsButton" Style="{StaticResource MaterialDesignTabRadioButton}"
                     Margin="4"
                     IsChecked="False"
                     Content="ANIMALS" Click="animalsButton_Click" />
-                <RadioButton FontSize="20"
+                <RadioButton FontSize="25" Height="40"
                     x:Name="contactButton" Style="{StaticResource MaterialDesignTabRadioButton}"
                     Margin="4"
                     IsChecked="False"
-                    Content="CONTACT and API" Click="contactButton_Click"/>
+                    Content="FEEDBACK and API" Click="contactButton_Click"/>
             </StackPanel>
         </Grid>
 

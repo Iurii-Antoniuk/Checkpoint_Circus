@@ -13,7 +13,7 @@ namespace Database_Api
             context = new CircusContext();
         }
         
-        public IEnumerable<Tamer> GetAllTamers()
+        public List<Tamer> GetAllTamers()
         {
             IEnumerable<Tamer> tamers = context.Tamers.AsEnumerable();
             IEnumerable<SpiritAnimal> spiritAnimals = context.SpiritAnimals.AsEnumerable();
@@ -27,14 +27,14 @@ namespace Database_Api
             return dataTamers.ToList();
         }
 
-        public IEnumerable<SpiritAnimal> GetAllAnimals()
+        public List<SpiritAnimal> GetAllAnimals()
         {
             IEnumerable<SpiritAnimal> animals = context.SpiritAnimals.AsEnumerable();
             
             return animals.ToList();
         }
 
-        public IEnumerable<KungfuMastery> GetAllKungfuMasteries()
+        public List<KungfuMastery> GetAllKungfuMasteries()
         {
             IEnumerable<KungfuMastery> kungfuMasteries = context.KungfuMasteries.AsEnumerable();
 
