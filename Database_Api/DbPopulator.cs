@@ -15,11 +15,11 @@ namespace Database_Api
             context = new CircusContext();
         }
         
-        public List<Tamer> GetAllTamers()
+        public async Task<List<Tamer>> GetAllTamersAsync()
         {
-            IEnumerable<Tamer> tamers = context.Tamers.AsEnumerable();
-            IEnumerable<SpiritAnimal> spiritAnimals = context.SpiritAnimals.AsEnumerable();
-            IEnumerable<KungfuMastery> kungfuMasteries = context.KungfuMasteries.AsEnumerable();
+            IEnumerable<Tamer> tamers = await context.Tamers.ToListAsync();
+            IEnumerable<SpiritAnimal> spiritAnimals = await context.SpiritAnimals.ToListAsync();
+            IEnumerable<KungfuMastery> kungfuMasteries = await context.KungfuMasteries.ToListAsync();
 
             IEnumerable<Tamer> dataTamers = from t in tamers
                                             join sa in spiritAnimals on t.SpiritAnimal.SpiritAnimalId equals sa.SpiritAnimalId

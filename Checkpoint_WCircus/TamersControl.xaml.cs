@@ -4,9 +4,7 @@ using System.Text;
 using System.Windows;
 using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Media.Imaging;
+using System.Threading.Tasks;
 using Database_Api;
 
 namespace Checkpoint_WCircus
@@ -25,9 +23,6 @@ namespace Checkpoint_WCircus
         {
             InitializeComponent();
             previousImageButton.IsEnabled = false;
-            tamers = dbPopulator.GetAllTamers();
-            this.DataContext = tamers[currentNumber];
-            maxNumber = tamers.Count-1;
         }
 
         private void previousImageButton_Click(object sender, RoutedEventArgs e)
@@ -57,6 +52,18 @@ namespace Checkpoint_WCircus
             Window mainWindow = curApp.MainWindow;
             RadioButton animalButton = (RadioButton)mainWindow.FindName("animalsButton");
             animalButton.IsChecked = true;
+        }
+
+        private async Task LoadTamers()
+        {
+            tamers = await dbPopulator.GetAllTamersAsync();
+            this.DataContext = tamers[currentNumber];
+            maxNumber = tamers.Count - 1;
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadTamers();
         }
     }
 }

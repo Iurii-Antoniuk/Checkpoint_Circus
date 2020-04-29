@@ -20,16 +20,16 @@ namespace Database_Api
                 return "Welcome to the Kung Fu Circus! We're on it";
             });
 
-            Get("/tamers", pars =>
+            Get("/tamers", async pars =>
             {
-                IEnumerable<Tamer> tamers = db.GetAllTamers();
+                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
                 string output = JsonConvert.SerializeObject(tamers);
                 return output;
             });
 
-            Get("/tamers/{id}", pars =>
+            Get("/tamers/{id}", async pars =>
             {
-                IEnumerable<Tamer> tamers = db.GetAllTamers();
+                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
                 bool exists = tamers.Any(t => t.TamerId == pars.id);
                 if (exists)
                 {
@@ -43,9 +43,9 @@ namespace Database_Api
                 }
             });
 
-            Get("/tamers/{id}/spirit-animal", pars =>
+            Get("/tamers/{id}/spirit-animal", async pars =>
             {
-                IEnumerable<Tamer> tamers = db.GetAllTamers();
+                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
                 bool exists = tamers.Any(t => t.TamerId == pars.id);
                 if (exists)
                 {
@@ -59,9 +59,9 @@ namespace Database_Api
                 }
             });
 
-            Get("/tamers/{id}/skills", pars =>
+            Get("/tamers/{id}/skills", async pars =>
             {
-                IEnumerable<Tamer> tamers = db.GetAllTamers();
+                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
                 bool exists = tamers.Any(t => t.TamerId == pars.id);
                 if (exists)
                 {
