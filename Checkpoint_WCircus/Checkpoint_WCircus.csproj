@@ -13,6 +13,7 @@
     <None Remove="Images\Katana.jpg" />
     <None Remove="Images\KungFury.jpg" />
     <None Remove="Images\Phoenix.png" />
+    <None Remove="Images\Raptor.jpg" />
     <None Remove="Images\titleImage.jpg" />
     <None Remove="Images\Trex.jpg" />
     <None Remove="Images\Triceracop.jpg" />
@@ -48,6 +49,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\Phoenix.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\Raptor.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\titleImage.jpg">

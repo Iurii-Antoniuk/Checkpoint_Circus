@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Database_Api
 {
@@ -27,11 +29,9 @@ namespace Database_Api
             return dataTamers.ToList();
         }
 
-        public List<SpiritAnimal> GetAllAnimals()
+        public async Task<List<SpiritAnimal>> GetAllAnimalsAsync()
         {
-            IEnumerable<SpiritAnimal> animals = context.SpiritAnimals.AsEnumerable();
-            
-            return animals.ToList();
+            return await context.SpiritAnimals.ToListAsync();
         }
 
         public void SaveFeedback(Feedback feedback)
@@ -101,9 +101,9 @@ namespace Database_Api
                 SpiritAnimal = new SpiritAnimal
                 {
                     Claws = true,
-                    Image = "/Images/Phoenix.png",
-                    Teeth = false,
-                    Name = "Flying Nazi Phoenix"
+                    Image = "/Images/Raptor.jpg",
+                    Teeth = true,
+                    Name = "Nazi Laser Raptor"
                 },
                 KungfuMastery = new KungfuMastery { Agility = 9, Chosenness = 9, Hacking = 1, KillerInstinct = 10 }
             };

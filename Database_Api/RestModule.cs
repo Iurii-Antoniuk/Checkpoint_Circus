@@ -5,6 +5,7 @@ using Nancy;
 using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace Database_Api
 {
@@ -74,16 +75,16 @@ namespace Database_Api
                 }
             });
 
-            Get("/animals", pars =>
+            Get("/animals", async pars =>
             {
-                IEnumerable<SpiritAnimal> animals = db.GetAllAnimals();
+                IEnumerable<SpiritAnimal> animals = await db.GetAllAnimalsAsync();
                 string output = JsonConvert.SerializeObject(animals);
                 return output;
             });
 
-            Get("/animals/{id}", pars =>
+            Get("/animals/{id}", async pars =>
             {
-                IEnumerable<SpiritAnimal> animals = db.GetAllAnimals();
+                IEnumerable<SpiritAnimal> animals = await db.GetAllAnimalsAsync();
                 bool exists = animals.Any(a => a.SpiritAnimalId == pars.id);
                 if (exists)
                 {

@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Threading.Tasks;
 using Database_Api;
 
 namespace Checkpoint_WCircus
@@ -28,13 +21,6 @@ namespace Checkpoint_WCircus
         {
             InitializeComponent();
             currentNumber = currNum;
-            animals = dbPopulator.GetAllAnimals();
-            this.DataContext = animals[currentNumber];
-            maxNumber = animals.Count - 1;
-            if (currentNumber == 0)
-                previousImageButton.IsEnabled = false;
-            else if (currentNumber == maxNumber)
-                nextImageButton.IsEnabled = false;
         }
 
         private void previousImageButton_Click(object sender, RoutedEventArgs e)
@@ -53,6 +39,22 @@ namespace Checkpoint_WCircus
             if (currentNumber == maxNumber)
                 nextImageButton.IsEnabled = false;
             this.DataContext = animals[currentNumber];
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadAnimals();
+        }
+
+        private async Task LoadAnimals()
+        {
+            animals = await dbPopulator.GetAllAnimalsAsync();
+            this.DataContext = animals[currentNumber];
+            maxNumber = animals.Count - 1;
+            if (currentNumber == 0)
+                previousImageButton.IsEnabled = false;
+            else if (currentNumber == maxNumber)
+                nextImageButton.IsEnabled = false;
         }
     }
 }
