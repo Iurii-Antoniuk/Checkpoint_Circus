@@ -19,15 +19,15 @@
                 </Style>
                 <Style TargetType="Label">
                     <Setter Property="Foreground" Value="IndianRed" />
-                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="FontSize" Value="18" />
                     <Setter Property="FontFamily" Value="Algerian" />
                     <Setter Property="VerticalAlignment"  Value="Center" />
                 </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="9*"/>
-                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="16*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid x:Name="commentGrid" Grid.Column="1" Margin="0,20,0,20">
@@ -45,15 +45,15 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                     <Label Margin="10, 0, 10, 0" Width="65" Content="Name:" />
-                    <TextBox x:Name="txtName"  Height="auto" Width="260" />
+                    <TextBox x:Name="txtName"  Height="auto" Width="240" />
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                     <Label Margin="10, 0, 10, 0" Width="65" Content="Phone:" />
-                    <TextBox x:Name="txtPhone" Height="auto" Width="260" />
+                    <TextBox x:Name="txtPhone" Height="auto" Width="240" />
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                     <Label Margin="10, 0, 10, 0" Width="65" Content="Email:" />
-                    <TextBox x:Name="txtEmail" Height="auto" Width="260" />
+                    <TextBox x:Name="txtEmail" Height="auto" Width="240" />
                 </StackPanel>
                 <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Vertical">
                     <Label Margin="10, 0, 10, 10" Content="Comment:" />
@@ -62,14 +62,14 @@
                        Margin="40,0,10,0"
                        VerticalAlignment="Top"
                        Height="90"
-                        Width="300"
+                        Width="260"
                        AcceptsReturn="True"
                        TextWrapping="Wrap"
                        VerticalScrollBarVisibility="Auto"
                        materialDesign:HintAssist.Hint="Your comment goes here"
                        IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedTextFieldTextBoxEnabledComboBox}" />
                 </StackPanel>
-                
+
                 <Button Grid.Column="1" Grid.Row="4" FontSize="18" VerticalContentAlignment="Center"
                 Height="35" x:Name="sendButton" Click="sendButton_Click"
                 Width="100" materialDesign:ShadowAssist.ShadowDepth="Depth5"
@@ -78,17 +78,64 @@
                 </Button>
 
             </Grid>
-            
 
             <Grid x:Name="apiGrid" Grid.Column="2" 
-                  Margin="20, 25, 0, 0">
+                  Margin="0, 0, 0, 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
+                <TextBlock Grid.Column="0" Grid.Row="0"
+                    FontWeight="DemiBold"  FontSize="18" Foreground="IndianRed"
+                    TextWrapping="WrapWithOverflow" Width="auto" 
+                    Text="Feel free to consume our RESTful API" />
+                <materialDesign:PackIcon Kind="Api"  Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="70" Foreground="Navy" />
+
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                           Margin="5, 5, 5, 0" TextWrapping="WrapWithOverflow"
+                    Style="{StaticResource MaterialDesignBody2TextBlock}">
+                        Our RESTful API is listening at  <LineBreak />
+                        <Hyperlink 
+                            NavigateUri="http://localhost:1234"
+                            RequestNavigate="Hyperlink_RequestNavigate">
+                            http://localhost:1234
+                        </Hyperlink>
+                        .  <LineBreak /> You will be served JSON data on Tamers, Animals and much more. 
+                        Example requests:
+                </TextBlock>
+                <StackPanel Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
+                    <materialDesign:Chip>
+                        <Hyperlink >
+                            http://localhost:1234/tamers
+                        </Hyperlink>
+                    </materialDesign:Chip>
+                    <materialDesign:Chip>
+                        <Hyperlink >
+                            http://localhost:1234/animals
+                        </Hyperlink>
+                    </materialDesign:Chip>
+                    <materialDesign:Chip>
+                        <Hyperlink >
+                            http://localhost:1234/tamers/{id}
+                        </Hyperlink>
+                    </materialDesign:Chip>
+                    <materialDesign:Chip>
+                        <Hyperlink >
+                            http://localhost:1234/tamers/{id}/spirit-animal
+                        </Hyperlink>
+                    </materialDesign:Chip>
+                    <materialDesign:Chip>
+                        <Hyperlink >
+                            http://localhost:1234/feedbacks/{name}
+                        </Hyperlink>
+                    </materialDesign:Chip>
+                </StackPanel>
             </Grid>
         </Grid>
     </Grid>

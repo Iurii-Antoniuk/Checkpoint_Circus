@@ -22,11 +22,11 @@ namespace Checkpoint_WCircus
         public MainWindow()
         {
             InitializeComponent();
-            //var host = new NancyHost(new Uri("http://localhost:1234"));
-            //host.Start();
-            string imageLink = "https://pmcvariety.files.wordpress.com/2015/05/kung-fury-cannes.jpg";
-            var imageSource = new Uri(imageLink, UriKind.Absolute);
-            titleImage.Source = new BitmapImage(imageSource);
+            var host = new NancyHost(new Uri("http://localhost:1234"));
+            host.Start();
+            string imagelink = "/Images/titleImage.jpg";
+            var imagesource = new Uri(imagelink, UriKind.Relative);
+            titleImage.Source = new BitmapImage(imagesource);
         }
 
         private void contactButton_Click(object sender, RoutedEventArgs e)

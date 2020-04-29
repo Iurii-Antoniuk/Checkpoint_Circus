@@ -97,6 +97,28 @@ namespace Database_Api
                 }
             });
 
+            Get("/feedbacks", pars =>
+            {
+                IEnumerable<Feedback> feedbacks = db.GetAllFeedbacks();
+                string output = JsonConvert.SerializeObject(feedbacks);
+                return output;
+            });
+
+            Get("/feedbacks/{name}", pars =>
+            {
+                IEnumerable<Feedback> feedbacks = db.GetAllFeedbacks();
+                Feedback feedback = feedbacks.SingleOrDefault(f => f.Name == pars.name);
+                if (feedback != null)
+                {
+                    string export = JsonConvert.SerializeObject(feedback);
+                    return export;
+                }
+                else
+                {
+                    return "Ouups, we don't have any feedbacks from users with the requested Name";
+                }
+            });
+
         }
     }
 }

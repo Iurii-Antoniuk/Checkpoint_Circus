@@ -34,6 +34,19 @@ namespace Database_Api
             return animals.ToList();
         }
 
+        public void SaveFeedback(Feedback feedback)
+        {
+            context.Add(feedback);
+            context.SaveChanges();
+        }
+
+        public List<Feedback> GetAllFeedbacks()
+        {
+            IEnumerable<Feedback> feedbacks = context.Feedbacks.AsEnumerable();
+
+            return feedbacks.ToList();
+        }
+
         public List<KungfuMastery> GetAllKungfuMasteries()
         {
             IEnumerable<KungfuMastery> kungfuMasteries = context.KungfuMasteries.AsEnumerable();
@@ -51,12 +64,12 @@ namespace Database_Api
             Tamer kungFury = new Tamer
             {
                 Name = "Kung Fury",
-                Image = "https://vignette.wikia.nocookie.net/vsbattles/images/e/e8/Kf.jpg/revision/latest/scale-to-width-down/340?cb=20161027063513",
+                Image = "/Images/KungFury.jpg",
                 Quote = "I'm a cop, and damn good at my job",
                 SpiritAnimal = new SpiritAnimal
                 {
                     Claws = false,
-                    Image = "https://i.pinimg.com/236x/56/ce/18/56ce18eca0c119b2ff5674af715b1a57--kung-fury-wilde.jpg",
+                    Image = "/Images/Cobra.jpg",
                     Teeth = true,
                     Name = "Mr. Cobra"
                 },
@@ -67,12 +80,12 @@ namespace Database_Api
             Tamer hackerMan = new Tamer
             {
                 Name = "Hackerman",
-                Image = "https://i.pinimg.com/originals/d7/48/d6/d748d627ab913303b42224d91980ace3.jpg",
+                Image = "/Images/Hackerman.jpg",
                 Quote = "With the right computer algorithms I can hack you back in time",
                 SpiritAnimal = new SpiritAnimal
                 {
                     Claws = false,
-                    Image = "https://pm1.narvii.com/6514/866c29584784cf94263eff9c95574de7b2cf10db_00.jpg",
+                    Image = "/Images/Triceracop.jpg",
                     Teeth = true,
                     Name = "Triceracop"
                 },
@@ -83,12 +96,12 @@ namespace Database_Api
             Tamer hitler = new Tamer
             {
                 Name = "Hitler",
-                Image = "https://cdn-www.konbini.com/fr/files/2015/05/Kung-Fury.jpg",
+                Image = "/Images/Hitler.jpg",
                 Quote = "Is this ze police?.. Fuck you!",
                 SpiritAnimal = new SpiritAnimal
                 {
                     Claws = true,
-                    Image = "http://4.bp.blogspot.com/-cor5EnU3ipo/VY7sDxYVU7I/AAAAAAAAXcY/Ph7bsXGyXRI/s640/flying%2Bnazi%2Bphoenix-b.png",
+                    Image = "/Images/Phoenix.png",
                     Teeth = false,
                     Name = "Flying Nazi Phoenix"
                 },
@@ -99,12 +112,12 @@ namespace Database_Api
             Tamer katana = new Tamer
             {
                 Name = "Katana",
-                Image = "https://i.pinimg.com/originals/66/9f/95/669f957543b3e680e8f0e98756f7b9c1.jpg",
+                Image = "/Images/Katana.jpg",
                 Quote = "So...anyway, Thor, um, this is Kung Fury. He's a cop from the future",
                 SpiritAnimal = new SpiritAnimal
                 {
                     Claws = true,
-                    Image = "https://i.ytimg.com/vi/y5ibJ9UOGPA/maxresdefault.jpg",
+                    Image = "/Images/Trex.jpg",
                     Teeth = true,
                     Name = "Tyrannosaur"
                 },
