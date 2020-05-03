@@ -22,14 +22,14 @@ namespace Database_Api
 
             Get("/tamers", async pars =>
             {
-                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
+                IEnumerable<Tamer> tamers = await db.GetTamersDataAsync();
                 string output = JsonConvert.SerializeObject(tamers);
                 return output;
             });
 
             Get("/tamers/{id}", async pars =>
             {
-                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
+                IEnumerable<Tamer> tamers = await db.GetTamersDataAsync();
                 bool exists = tamers.Any(t => t.TamerId == pars.id);
                 if (exists)
                 {
@@ -45,7 +45,7 @@ namespace Database_Api
 
             Get("/tamers/{id}/spirit-animal", async pars =>
             {
-                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
+                IEnumerable<Tamer> tamers = await db.GetTamersDataAsync();
                 bool exists = tamers.Any(t => t.TamerId == pars.id);
                 if (exists)
                 {
@@ -61,7 +61,7 @@ namespace Database_Api
 
             Get("/tamers/{id}/skills", async pars =>
             {
-                IEnumerable<Tamer> tamers = await db.GetAllTamersAsync();
+                IEnumerable<Tamer> tamers = await db.GetTamersDataAsync();
                 bool exists = tamers.Any(t => t.TamerId == pars.id);
                 if (exists)
                 {
@@ -77,14 +77,14 @@ namespace Database_Api
 
             Get("/animals", async pars =>
             {
-                IEnumerable<SpiritAnimal> animals = await db.GetAllAnimalsAsync();
+                IEnumerable<SpiritAnimal> animals = await db.GetEntitiesAsync<SpiritAnimal>();
                 string output = JsonConvert.SerializeObject(animals);
                 return output;
             });
 
             Get("/animals/{id}", async pars =>
             {
-                IEnumerable<SpiritAnimal> animals = await db.GetAllAnimalsAsync();
+                IEnumerable<SpiritAnimal> animals = await db.GetEntitiesAsync<SpiritAnimal>();
                 bool exists = animals.Any(a => a.SpiritAnimalId == pars.id);
                 if (exists)
                 {
@@ -98,16 +98,16 @@ namespace Database_Api
                 }
             });
 
-            Get("/feedbacks", pars =>
+            Get("/feedbacks", async pars =>
             {
-                IEnumerable<Feedback> feedbacks = db.GetAllFeedbacks();
+                IEnumerable<Feedback> feedbacks = await db.GetEntitiesAsync<Feedback>();
                 string output = JsonConvert.SerializeObject(feedbacks);
                 return output;
             });
 
-            Get("/feedbacks/{name}", pars =>
+            Get("/feedbacks/{name}", async pars =>
             {
-                IEnumerable<Feedback> feedbacks = db.GetAllFeedbacks();
+                IEnumerable<Feedback> feedbacks = await db.GetEntitiesAsync<Feedback>();
                 Feedback feedback = feedbacks.SingleOrDefault(f => f.Name == pars.name);
                 if (feedback != null)
                 {

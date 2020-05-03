@@ -56,7 +56,7 @@ namespace Checkpoint_WCircus
 
         private async Task LoadTamers()
         {
-            tamers = await dbPopulator.GetAllTamersAsync();
+            tamers = await dbPopulator.GetTamersDataAsync();
             this.DataContext = tamers[currentNumber];
             maxNumber = tamers.Count - 1;
         }

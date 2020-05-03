@@ -15,11 +15,11 @@ namespace Database_Api
             context = new CircusContext();
         }
         
-        public async Task<List<Tamer>> GetAllTamersAsync()
+        public async Task<List<Tamer>> GetTamersDataAsync()
         {
-            IEnumerable<Tamer> tamers = await context.Tamers.ToListAsync();
-            IEnumerable<SpiritAnimal> spiritAnimals = await context.SpiritAnimals.ToListAsync();
-            IEnumerable<KungfuMastery> kungfuMasteries = await context.KungfuMasteries.ToListAsync();
+            IEnumerable<Tamer> tamers = await GetEntitiesAsync<Tamer>();
+            IEnumerable<SpiritAnimal> spiritAnimals = await GetEntitiesAsync<SpiritAnimal>();
+            IEnumerable<KungfuMastery> kungfuMasteries = await GetEntitiesAsync<KungfuMastery>();
 
             IEnumerable<Tamer> dataTamers = from t in tamers
                                             join sa in spiritAnimals on t.SpiritAnimal.SpiritAnimalId equals sa.SpiritAnimalId
@@ -29,29 +29,15 @@ namespace Database_Api
             return dataTamers.ToList();
         }
 
-        public async Task<List<SpiritAnimal>> GetAllAnimalsAsync()
+        public async Task<List<TEntity>> GetEntitiesAsync<TEntity>() where TEntity : class
         {
-            return await context.SpiritAnimals.ToListAsync();
+            return await context.Set<TEntity>().ToListAsync();
         }
 
         public void SaveFeedback(Feedback feedback)
         {
             context.Add(feedback);
             context.SaveChanges();
-        }
-
-        public List<Feedback> GetAllFeedbacks()
-        {
-            IEnumerable<Feedback> feedbacks = context.Feedbacks.AsEnumerable();
-
-            return feedbacks.ToList();
-        }
-
-        public List<KungfuMastery> GetAllKungfuMasteries()
-        {
-            IEnumerable<KungfuMastery> kungfuMasteries = context.KungfuMasteries.AsEnumerable();
-
-            return kungfuMasteries.ToList();
         }
 
         public void Populate()

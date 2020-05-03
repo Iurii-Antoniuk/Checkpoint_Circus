@@ -48,7 +48,7 @@ namespace Checkpoint_WCircus
 
         private async Task LoadAnimals()
         {
-            animals = await dbPopulator.GetAllAnimalsAsync();
+            animals = await dbPopulator.GetEntitiesAsync<SpiritAnimal>();
             this.DataContext = animals[currentNumber];
             maxNumber = animals.Count - 1;
             if (currentNumber == 0)
